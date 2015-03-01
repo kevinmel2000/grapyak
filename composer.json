@@ -1,0 +1,41 @@
+{
+    "name": "Grapyak/grapyak",
+    "type": "library",
+    "description": "Simple ChatBot written in PHP",
+    "keywords": [
+        "chat",
+        "bot"
+    ],
+    "homepage": "https://github.com/andylibrian/grapyak",
+    "authors": [
+        {
+            "name": "Andy Librian",
+            "email": "andylibrian@gmail.com",
+            "homepage": "http://andylibrian.pro",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Grapyak\\": "src"
+        }
+    },
+    "license": "MIT",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://github.com/andylibrian/grapyak/issues",
+        "source": "https://github.com/andylibrian/grapyak"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
