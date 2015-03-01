@@ -4,7 +4,7 @@
     <property name="php" value="php"/>
 
     <target name="build"
-        depends="prepare,lint,phpcs,php-cs-fixer,phpunit"/>
+        depends="prepare,lint,phpcs,php-cs-fixer,phpunit,behat"/>
 
     <target name="prepare">
         <mkdir dir="${basedir}/build"/>
@@ -53,6 +53,11 @@
             <arg value="--dry-run" />
             <arg value="--level=psr2" />
             <arg path="${basedir}/tests" />
+        </exec>
+    </target> 
+
+    <target name="behat" description="Run behat">
+        <exec executable="${basedir}/vendor/bin/behat" failonerror="true">
         </exec>
     </target> 
 
