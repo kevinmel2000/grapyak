@@ -6,6 +6,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Grapyak\Bot\BotFactory;
 use Grapyak\Message\Message;
+use Grapyak\Training\TrainingDocument;
 
 /**
  * Defines application features from the specific context.
@@ -34,6 +35,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
 
     /**
      * @When saya suruh dia untuk :arg1
+     * @When saya bicara ke dia :arg1
      */
     public function sayaSuruhDiaUntuk($arg1)
     {
@@ -46,5 +48,14 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function diaHarusMenjawab($arg1)
     {
         \PHPUnit_Framework_Assert::assertEquals((string)$arg1, $this->response->getContent());
+    }
+
+    /**
+     * @Given saya ajari, jika diajak bicara :arg1, maka jawab dengan :arg2
+     * @Given saya ajari, jika diajak bicara :arg1, maka proses perintah :arg2
+     */
+    public function sayaAjariJikaDiajakBicaraMakaJawabDengan($arg1, $arg2)
+    {
+        $this->bot->train(new TrainingDocument($arg1, $arg2));
     }
 }
