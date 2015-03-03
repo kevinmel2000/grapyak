@@ -7,6 +7,8 @@ use Grapyak\ExpressionLanguage\FunctionProvider\DateTimeProvider;
 
 class AnswerBuilder
 {
+    private $lang;
+
     public function __construct()
     {
         $this->lang = new ExpressionLanguage();

@@ -4,37 +4,38 @@ namespace Grapyak\Bot;
 
 use Grapyak\Message\Message;
 use Grapyak\Training\TrainingDocument;
+use Grapyak\Training\TrainingCollection;
 
 class Bot
 {
-    private $trainingDocuments = [];
+    private $trainingCollection;
 
     private $answerBuilder;
 
-    public function __construct()
-    {
-        $this->answerBuilder = new AnswerBuilder();
+    public function __construct(
+        TrainingCollection $trainingCollection,
+        AnswerBuilder $answerBuilder
+    ) {
+        $this->trainingCollection = $trainingCollection;
+        $this->answerBuilder      = $answerBuilder;
     }
 
     public function tell(Message $message)
     {
-        foreach ($this->trainingDocuments as $training) {
+        foreach ($this->trainingCollection as $training) {
             if (preg_match('/'.$training->getInput().'/i', $message->getContent(), $matches)) {
-                //var_dump($matches);
                 return new Message($this->answerBuilder->build($training->getOutput(), $matches));
             }
         }
-
-        return new Message('2');
     }
 
     public function train(TrainingDocument $document)
     {
-        $this->trainingDocuments[] = $document;
+        $this->trainingCollection->add($document);
     }
 
-    public function getTrainingDocuments()
+    public function getTrainingCollection()
     {
-        return $this->trainingDocuments;
+        return $this->trainingCollection;
     }
 }

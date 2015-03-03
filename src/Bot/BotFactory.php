@@ -6,6 +6,9 @@ class BotFactory
 {
     public function createBot()
     {
-        return new Bot();
+        $trainingCollection = new \Grapyak\Training\ArrayTrainingCollection();
+        $answerBuilder      = new AnswerBuilder();
+
+        return new Bot($trainingCollection, $answerBuilder);
     }
 }
