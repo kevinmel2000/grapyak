@@ -58,4 +58,13 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         $this->bot->train(new TrainingDocument($arg1, $arg2));
     }
+
+    /**
+     * @Then dia harus menjawab dengan waktu sekarang dengan format :arg1
+     */
+    public function diaHarusMenjawabDenganWaktuSekarangDenganFormat($arg1)
+    {
+        $now = new \DateTime();
+        $this->diaHarusMenjawab($now->format($arg1));
+    }
 }
