@@ -7,7 +7,7 @@ use Grapyak\ExpressionLanguage\FunctionProvider\DateTimeProvider;
 
 class AnswerBuilder
 {
-    private $lang;
+    private $lang = [];
 
     public function __construct()
     {
