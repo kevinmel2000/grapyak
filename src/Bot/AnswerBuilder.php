@@ -3,16 +3,14 @@
 namespace Grapyak\Bot;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use Grapyak\ExpressionLanguage\FunctionProvider\DateTimeProvider;
 
 class AnswerBuilder
 {
-    private $lang = [];
+    private $lang;
 
-    public function __construct()
+    public function __construct(ExpressionLanguage $exprLang)
     {
-        $this->lang = new ExpressionLanguage();
-        $this->lang->registerProvider(new DateTimeProvider());
+        $this->lang = $exprLang;
     }
 
     public function build($answer, array $arg)
@@ -43,5 +41,10 @@ class AnswerBuilder
         }
 
         return $output;
+    }
+
+    public function getExpressionLanguage()
+    {
+        return $this->lang;
     }
 }

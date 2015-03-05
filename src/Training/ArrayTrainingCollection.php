@@ -4,7 +4,7 @@ namespace Grapyak\Training;
 
 class ArrayTrainingCollection implements TrainingCollection
 {
-    private $collection;
+    private $collection = [];
 
     public function add($training)
     {

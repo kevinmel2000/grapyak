@@ -38,4 +38,9 @@ class Bot
     {
         return $this->trainingCollection;
     }
+
+    public function getAnswerBuilder()
+    {
+        return $this->answerBuilder;
+    }
 }
