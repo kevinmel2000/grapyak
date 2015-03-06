@@ -21,7 +21,8 @@ class AnswerBuilder
         if (preg_match('/echo\((.*)\) /', $output, $matches)) {
             $echoExpr = $matches[1];
 
-            for ($i = 1; $i < count($arg); $i++) {
+            $count = count($arg);
+            for ($i = 1; $i < $count; $i++) {
                 $echoExpr = str_replace('{:'.$i.'}', $arg[$i], $echoExpr);
             }
 
@@ -32,7 +33,8 @@ class AnswerBuilder
         if (preg_match('/eval\((.*)\)/', $output, $matches)) {
             $evalExpr = $matches[1];
 
-            for ($i = 1; $i < count($arg); $i++) {
+            $count = count($arg);
+            for ($i = 1; $i < $count; $i++) {
                 $evalExpr = str_replace('{:'.$i.'}', $arg[$i], $evalExpr);
             }
 
