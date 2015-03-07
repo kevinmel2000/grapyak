@@ -14,7 +14,7 @@ class Bot
 
     public function __construct(
         TrainingCollection $trainingCollection,
-        AnswerBuilder $answerBuilder
+        AnswerBuilderInterface $answerBuilder
     ) {
         $this->trainingCollection = $trainingCollection;
         $this->answerBuilder      = $answerBuilder;

@@ -4,7 +4,7 @@ namespace Grapyak\Bot;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-class AnswerBuilder
+class AnswerBuilder implements AnswerBuilderInterface
 {
     private $lang;
 
@@ -13,17 +13,17 @@ class AnswerBuilder
         $this->lang = $exprLang;
     }
 
-    public function build($answer, array $arg)
+    public function build($rawAnswer, array $arguments)
     {
-        $output = $answer;
+        $output = $rawAnswer;
 
         // echo
         if (preg_match('/echo\((.*)\) /', $output, $matches)) {
             $echoExpr = $matches[1];
 
-            $count = count($arg);
+            $count = count($arguments);
             for ($i = 1; $i < $count; $i++) {
-                $echoExpr = str_replace('{:'.$i.'}', $arg[$i], $echoExpr);
+                $echoExpr = str_replace('{:'.$i.'}', $arguments[$i], $echoExpr);
             }
 
             $output = str_replace($matches[0], $echoExpr.' ', $output);
@@ -33,9 +33,9 @@ class AnswerBuilder
         if (preg_match('/eval\((.*)\)/', $output, $matches)) {
             $evalExpr = $matches[1];
 
-            $count = count($arg);
+            $count = count($arguments);
             for ($i = 1; $i < $count; $i++) {
-                $evalExpr = str_replace('{:'.$i.'}', $arg[$i], $evalExpr);
+                $evalExpr = str_replace('{:'.$i.'}', $arguments[$i], $evalExpr);
             }
 
             $result = $this->lang->evaluate($evalExpr);
